@@ -1,12 +1,5 @@
 import { Schema, model } from "mongoose";
-import type { PlayerActivity } from "../types/Player";
-
-interface IPlayer {
-  name: string;
-  level: number;
-  experience: number;
-  activity: PlayerActivity;
-}
+import type { IPlayer } from "../types/Player";
 
 const userSchema = new Schema<IPlayer>({
   name: { type: String, required: true },
