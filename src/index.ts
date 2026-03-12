@@ -1,8 +1,11 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import dotenv from "dotenv";
 import { CommandHandler } from "djs-commands";
+import connectDB from "./services/mongo";
 
 dotenv.config();
+
+connectDB();
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -29,17 +32,6 @@ client.on("interactionCreate", async (interaction) => {
     await cmd.run(interaction);
   } catch (error) {
     console.error("Error running command:", error);
-    if (interaction.replied || interaction.deferred) {
-      await interaction.followUp({
-        content: "❌ An error occurred while executing this command.",
-        ephemeral: true,
-      });
-    } else {
-      await interaction.reply({
-        content: "❌ An error occurred while executing this command.",
-        ephemeral: true,
-      });
-    }
   }
 });
 client.login(process.env.TOKEN);

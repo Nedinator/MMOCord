@@ -9,5 +9,7 @@ export default class StartCommand implements BaseCommand {
     .setName(this.name)
     .setDescription(this.description);
 
-  async run(interaction: ChatInputCommandInteraction): Promise<void> {}
+  async run(interaction: ChatInputCommandInteraction): Promise<void> {
+    interaction.reply({ content: "Well done!" });
+  }
 }
