@@ -18,7 +18,7 @@ const handler = new CommandHandler({
   updateCommands: true,
 });
 
-client.once("ready", async () => {
+client.once("clientReady", async () => {
   console.log(`Logged in as ${client.user?.tag}`);
 });
 
