@@ -1,24 +1,30 @@
-import { Schema, model } from "mongoose";
-import { PlayerActivity } from "../types/Player";
+import { Document, Model, Schema, model } from "mongoose";
+import type { Player } from "../types/Player";
 
-interface IPlayer {
-  name: string;
-  level: number;
-  experience: number;
-  activity: PlayerActivity;
-  class: string;
-  specialization?: string;
-}
+export type PlayerDocument = Player & Document;
 
-const userSchema = new Schema<IPlayer>({
+const userSchema = new Schema<PlayerDocument>({
   name: { type: String, required: true },
   level: { type: Number, default: 1 },
   experience: { type: Number, default: 0 },
   activity: { type: String, required: true },
-  class: { type: String, required: true },
+  class: {
+    type: String,
+    required: true,
+    enum: [
+      "Paladin",
+      "Rogue",
+      "Warrior",
+      "Hunter",
+      "Cleric",
+      "Monk",
+      "Necromancer",
+    ],
+  },
   specialization: String,
 });
 
-const User = model("User", userSchema);
-
-export default User;
+export default model<PlayerDocument>(
+  "User",
+  userSchema,
+) as Model<PlayerDocument>;

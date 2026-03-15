@@ -34,11 +34,12 @@ export type Player = {
     }
 );
 
-export type ClassTypes =
-  | "Paladin"
-  | "Rogue"
-  | "Warrior"
-  | "Hunter"
-  | "Cleric"
-  | "Monk"
-  | "Necromancer";
+export const AllClasses = [
+  "Paladin",
+  "Rogue",
+  "Warrior",
+  "Hunter",
+  "Cleric",
+  "Monk",
+  "Necromancer",
+] as const;
